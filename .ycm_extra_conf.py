@@ -86,14 +86,14 @@ flags = []
 
 # Defaults, if no database can be found.
 defaultsc = [
-        '/usr/bin/gcc',
+        'gcc',
         '-Wno-long-long',
         '-Wno-variadic-macros',
         '-pthread'
         '-std=c99',
         ]
 defaultscpp = [
-        '/usr/bin/c++',
+        'c++',
         '-Wno-long-long',
         '-Wno-variadic-macros',
         '-pthread'
@@ -160,13 +160,12 @@ def FlagsForFile( filename ):
                 filename = filename.replace(".h",".cpp")
                 break
             if filename.replace(".h",".c").find(f) != -1:
-                filename = filename.replace(".h",".cpp")
+                filename = filename.replace(".h",".c")
                 break
     elif filename.endswith(".hpp"):
-        filename = filename.replace(".h",".cpp")
         for f in os.listdir(os.path.dirname(filename)):
-            if filename.replace(".h",".c").find(f) != -1:
-                filename = filename.replace(".h",".cpp")
+            if filename.replace(".hpp",".cpp").find(f) != -1:
+                filename = filename.replace(".hpp",".cpp")
                 break
 
     # Get the compile commands
